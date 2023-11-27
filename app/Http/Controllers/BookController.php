@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Publisher;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -24,7 +26,13 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = Publisher::all();
+        $authors = Author::all();
+
+        return view('books.create', [
+            'publishers' => $publishers,
+            'authors' => $authors
+        ]);
     }
 
     /**
@@ -32,7 +40,30 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required|max:500',
+            'isbn' => 'required|max:500',
+            //  'author' =>'required',
+            //'book_image' => 'file|image|dimensions:width=300,height=400'
+            // 'book_image' => 'file|image',
+            'publisher_id' => 'required',
+            'authors' =>['required', 'exists:authors,id']
+        ]);
+
+        $book = Book::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'isbn' => $request->isbn,
+            //   'book_image' => $filename,
+            //    'author' => $request->author,
+            'publisher_id' => $request->publisher_id
+        ]);
+
+        $book->authors()->attach($request->authors);
+
+        return to_route('books.index');
     }
 
     /**
