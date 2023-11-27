@@ -16,7 +16,7 @@ class AuthorSeeder extends Seeder
     {
         Author::factory()->times(3)->create();
 
-        $numOfAuthors = 3
+        $numOfAuthors = 3;
         foreach(Book::all() as $book){
             $authors = Author::inRandomOrder()->take(rand(1,$numOfAuthors))->pluck('id');
             $book->authors()->attach($authors);
