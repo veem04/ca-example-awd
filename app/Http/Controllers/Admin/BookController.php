@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Publisher;
 use App\Models\Author;
+use Auth;
 
 class BookController extends Controller
 {
@@ -14,9 +16,16 @@ class BookController extends Controller
      */
     public function index()
     {
+        // Auth::user()->authorizeRoles('admin);
+
+        // if(!Auth::user()->hasRole('admin'))
+        // {
+        //     return to_route('user.books.index');
+        // }
+        
         $books = Book::all();
 
-        return view('books.index', [
+        return view('admin.books.index', [
             'books' => $books 
         ]);
     }
@@ -29,7 +38,7 @@ class BookController extends Controller
         $publishers = Publisher::all();
         $authors = Author::all();
 
-        return view('books.create', [
+        return view('admin.books.create', [
             'publishers' => $publishers,
             'authors' => $authors
         ]);
@@ -73,7 +82,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        return view('books.show', [
+        return view('admin.books.show', [
             'book' => $book
         ]);
     }

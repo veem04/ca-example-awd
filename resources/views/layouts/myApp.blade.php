@@ -32,10 +32,10 @@
     @endif
 
     <script>
-       let alert = document.getElementById('alert');
-       setTimeout(() => {
-        alert.remove();
-       }, 2000);
+        let alert = document.getElementById('alert');
+        setTimeout(() => {
+            alert.remove();
+        }, 2000);
     </script>
 </body>
 </html>
