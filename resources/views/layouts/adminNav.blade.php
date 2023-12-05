@@ -15,28 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user.books.index')" :active="request()->routeIs('user.books.*')">
+                    <x-nav-link :href="route('admin.books.index')" :active="request()->routeIs('admin.books.index')">
                         {{ __('Books') }}
                     </x-nav-link>
-                </div>
-
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('publishers.index')" :active="request()->routeIs('publishers.*')">
-                        {{ __('Publishers') }}
+                    <x-nav-link :href="route('admin.books.create')" :active="request()->routeIs('admin.books.create')">
+                        {{ __('Create Book') }}
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.*')">
-                        {{ __('Books') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('authors.index')" :active="request()->routeIs('authors.*')">
-                        {{ __('Authors') }}
-                    </x-nav-link>
-                </div> --}}
             </div>
 
             <!-- Settings Dropdown -->
